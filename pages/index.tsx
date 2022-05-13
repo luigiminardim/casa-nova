@@ -285,14 +285,18 @@ function UserItemsList({ user, items }: { user: User; items: Item[] }) {
       <Stack direction="column" padding={2}>
         <Typography variant="h5">Olá, {user.name}!</Typography>
         <Typography variant="subtitle1" color="text.secondary">
-          Aqui estão os suas adoções.
+          {items.length > 0
+            ? "Aqui estão suas adoções."
+            : "Você ainda não possui nenhuma adoção."}
         </Typography>
       </Stack>
-      <List>
-        {items.map((item) => (
-          <UserItemListItem key={item.id} item={item} />
-        ))}
-      </List>
+      {items.length > 0 && (
+        <List>
+          {items.map((item) => (
+            <UserItemListItem key={item.id} item={item} />
+          ))}
+        </List>
+      )}
     </Card>
   );
 }
