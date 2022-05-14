@@ -14,6 +14,7 @@ import {
   Skeleton,
   Button,
   Link,
+  Box,
   Dialog,
   DialogTitle,
   DialogContentText,
@@ -28,9 +29,10 @@ import {
   useQueryClient,
 } from "react-query";
 import { Item, ItemImage } from "../src/Item";
-import { useLocalStorage } from "@mantine/hooks";
+import { useLocalStorage, useClipboard } from "@mantine/hooks";
 import { User } from "../src/User";
-import { useState } from "react";
+import { ContentCopy as ContentCopyIcon } from "@mui/icons-material";
+import Image from "next/image";
 
 function useUser() {
   const [userName, setUserName] = useLocalStorage<string | null>({
@@ -156,12 +158,20 @@ function Header() {
     <Card sx={{ padding: 4 }}>
       <Stack direction="column" spacing={4}>
         <Typography variant="h3">Chá de casa nova!</Typography>
+        <Image
+          src="/casall.jpg"
+          alt="casal"
+          width={901}
+          height={637}
+          style={{ borderRadius: "4px", marginTop: "16px" }}
+          objectFit="cover"
+        />
         <Stack spacing={1}>
           <Typography variant="subtitle1">
             <b>Data:</b> 15 de maio (domingo) às 16h.
           </Typography>
           <Typography variant="subtitle1">
-            <b> Local:</b> SQN 411, bloco A, salão defestas.
+            <b> Local:</b> SQN 411, bloco A, salão de festas.
           </Typography>
         </Stack>
         <Stack spacing={1}>
@@ -173,7 +183,7 @@ function Header() {
           </Typography>
           <Typography>
             Sua presença será nosso maior presente. Ainda assim, ficaremos muito
-            agredecidos se puderem ajudar com algum item da lista.
+            agradecidos se puderem ajudar com algum item da lista.
           </Typography>
           <Alert severity="info">
             São apenas sugestões. Sintam-se livres para colocar um pedacinho de
@@ -279,6 +289,32 @@ function UserItemListItem({ item }: { item: Item }) {
   );
 }
 
+function PixSection() {
+  const pixCode = "luigiminardim@gmail.com";
+  const { copied, copy } = useClipboard();
+  return (
+    <Card sx={{ padding: 2 }}>
+      <Stack direction="column" spacing={2}>
+        <Typography variant="h5">Ajude com um PIX</Typography>
+        <Typography variant="subtitle1" color="text.secondary">
+          Copiar e-mail como chave PIX
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button startIcon={<ContentCopyIcon />} onClick={() => copy(pixCode)}>
+            {copied ? "E-mail copiado" : "Copiar Chave PIX"}
+          </Button>
+        </Box>
+      </Stack>
+    </Card>
+  );
+}
+
 function UserItemsList({ user, items }: { user: User; items: Item[] }) {
   return (
     <Card>
@@ -311,23 +347,21 @@ export default function Main() {
   } = useItems({ user });
 
   return (
-    <>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background:
+          "radial-gradient(circle, rgba(243,227,234,0.5216796191132703) 0%, rgba(211,226,244,1) 100%)",
+        paddingY: { xs: 2, md: 4 },
+      }}
+    >
       <Snackbar
         open={!!itemsError}
         autoHideDuration={10 * 1000}
         message={itemsError}
       />
       <UserDialog user={user} onLogin={onLogin} />
-      <Container
-        fixed
-        maxWidth="lg"
-        sx={{
-          minHeight: "100vh",
-          background:
-            "background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);",
-          paddingY: { xs: 2, md: 4 },
-        }}
-      >
+      <Container fixed maxWidth="lg">
         <Grid container columns={{ xs: 1, md: 2 }} spacing={4}>
           <Grid item xs={1}>
             <Header />
@@ -339,6 +373,7 @@ export default function Main() {
               ) : (
                 <Skeleton variant="rectangular" width={"100%"} height={118} />
               )}
+              <PixSection />
               {freeItems ? (
                 <FreeItemsList items={freeItems} allocate={allocateItem} />
               ) : (
@@ -348,6 +383,6 @@ export default function Main() {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </Box>
   );
 }
