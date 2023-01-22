@@ -31,7 +31,7 @@ export default endpoint({
   get: {
     handler: async () => {
       const notionItems = await notion.databases.query({
-        database_id: "8dc1eac9be3646e5ab34ab619476afdd",
+        database_id: process.env.NOTION_DATABASE_ID ?? "",
       });
       try {
         const items = await Promise.all(notionItems.results.map(extractItem));
