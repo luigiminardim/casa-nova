@@ -290,7 +290,7 @@ function UserItemListItem({ item }: { item: Item }) {
 }
 
 function PixSection() {
-  const pixCode = "luigiminardim@gmail.com";
+  const pixCode = "robertacarol12@hotmail.com";
   const { copied, copy } = useClipboard();
   return (
     <Card sx={{ padding: 2 }}>
