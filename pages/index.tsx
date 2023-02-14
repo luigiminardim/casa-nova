@@ -168,18 +168,21 @@ function Header() {
         />
         <Stack spacing={1}>
           <Typography variant="subtitle1">
-            <b>Data:</b> 15 de maio (domingo) às 16h.
+            <b>Data:</b> 31 de Março (sexta) às 19H30.
           </Typography>
           <Typography variant="subtitle1">
-            <b> Local:</b> SQN 411, bloco A, salão de festas.
+            <b> Local:</b> Quadra 13, Conj. A, lote 23, setor 4 - Águas Lindas /
+            GO
           </Typography>
         </Stack>
         <Stack spacing={1}>
-          <Typography>Olá pessoal!</Typography>
+          <Typography>Olá, amigos!</Typography>
           <Typography>
-            Estamos passando por uma grande mudança. Finalmente teremos nossa
-            casinha! (O casamento não foi dessa vez...) Portanto, gostariamos de
-            compartilhar nossa alegria nesse chá de casa nova.
+            Demorou, mas chegou! Finalmente vamos casar e mudar para nosso tão
+            sonhado e querido apartamento – uhu casa nova com cheiro de nova e
+            cara de nova. Queremos partilhar esse momento de felicidade com
+            todos vocês, nessa pequena celebração de casamento, ou melhor
+            dizendo, em uma festa com nosso jeitinho!
           </Typography>
           <Typography>
             Sua presença será nosso maior presente. Ainda assim, ficaremos muito
