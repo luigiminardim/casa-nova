@@ -157,7 +157,7 @@ function Header() {
   return (
     <Card sx={{ padding: 4 }}>
       <Stack direction="column" spacing={4}>
-        <Typography variant="h3">Chá de casa nova!</Typography>
+        <Typography variant="h3">Chá de casamento!</Typography>
         <Image
           src="/casall.jpg"
           alt="casal"
